@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CSS Clock</title>
+	<style type="text/css">
+	html{
+		      background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=50);
+
+	}
+		.clock{
+			height: 300px;
+			width: 300px;
+			border: 30px solid orange;
+			border-radius: 50%;
+			margin:100px auto;
+
+		}
+		.clock-face{
+			position: relative;
+			transform: translateY(-3px);
+			width: 100%;
+			height: 100%;
+		}
+		.hand{
+			position: absolute;
+			height: 3px;
+			width: 50%;
+			background: black;
+			top:50%;
+			transform-origin: 100%;
+			transform: rotate(90deg);
+
+
+		}
+
+	</style>
+</head>
+<body>
+	<h1><center>A stupid clock for intelligent people, this will take 2mins to identify which is what hand and you cannot count those 2mins as well</center></h1>
+<div class="clock">
+	<div class="clock-face">
+		<div class="hand h-hand"></div>
+		<div class="hand m-hand"></div>
+		<div class="hand s-hand"></div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<div class="clockdigital" style="font-size: 20px;font-weight: bold"></div>
+</div>
+<script type="text/javascript">
+	const shand = document.querySelector('.s-hand');
+	const mhand = document.querySelector('.m-hand');
+	const hhand = document.querySelector('.h-hand');
+	function setDate(){
+	const data = new Date().getSeconds();
+	const secondsDegree = ((data/60)*360)+90;
+	shand.style.transform = `rotate(${secondsDegree}deg)`;
+	const minutesDegree = ( (new Date().getMinutes() /60) * 360) + 90; 
+	//console.log(minutesDegree);
+	mhand.style.transform = `rotate(${minutesDegree}deg)`;
+	const hour = new Date().getHours();
+	const hourHand = ((hour/12) * 360) + 90;
+	hhand.style.transform = `rotate(${hourHand}deg)`;
+	console.log(hour);
+	// console.log(data);
+		document.querySelector('.clockdigital').innerHTML = new Date();
+
+
+	}
+	setInterval(setDate, 1000);
+</script>
+</body>
+</html>
